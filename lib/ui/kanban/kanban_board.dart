@@ -5,6 +5,7 @@ import 'package:kanban/ui/kanban/kanban_list.dart';
 import 'package:provider/provider.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
+//커밋용
 class KanbanBoard extends StatelessWidget {
   const KanbanBoard({super.key});
 

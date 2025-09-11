@@ -3,7 +3,7 @@ description: "Flutter 수업 프로젝트, 칸반보드 앱 제작"
 publish_to: 'none' 
 version: 1.0.0+1
 environment:
-  sdk: ^3.9.0
+  sdk: ^3.9.2
 dependencies:
   flutter:
     sdk: flutter

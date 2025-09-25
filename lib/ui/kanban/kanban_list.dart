@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kanban/enums/kanban_status.dart';
+import 'package:kanban/providers/kanban_provider.dart';
 import 'package:kanban/ui/common/status_island.dart';
+import 'package:kanban/ui/kanban/widgets/kanban_item.dart';
+import 'package:provider/provider.dart';
 
 class KanbanList extends StatelessWidget {
   final KanbanStatus status;
@@ -19,18 +22,34 @@ class KanbanList extends StatelessWidget {
       children: [
       StatusIsland(status: status,),
       Expanded(
-        child: ListView.separated(
-          itemCount: 5,
+        child: Consumer<KanbanProvider>(
+          builder: (context,provider,_){
+            final items = provider.items;
+            final searchedItems = items.where((e)=>e.$1 == status).toList();
+           return ListView.separated(
+          itemCount: searchedItems.length,
           shrinkWrap: true,
           separatorBuilder: (context,index){
-            return SizedBox(height: 10,);
+            return SizedBox(height: 20,);
           },
           itemBuilder: (context, index) {
-            return Text('${DateTime.now()}',style: TextStyle(
-              fontSize: 20
-            ),);
+            return KanbanItem(
+              status: status,
+              title: 'New Task ${index+1}',
+              onCheckbox: () {
+                debugPrint('$status -> 체크박스 클릭함');         
+              },
+              onDelete: () {
+                debugPrint('$status -> 삭제');
+                context.read<KanbanProvider>().deleteItemIndex(index);
+              },
+              onstatus: () {
+              },
+            );
           },
-        ),
+        );
+          }
+        )
       )
      ,],),
     );

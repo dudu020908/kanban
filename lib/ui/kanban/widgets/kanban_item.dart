@@ -31,7 +31,7 @@ class KanbanItem extends StatelessWidget {
            
             }),
         //타이틀
-        Expanded(child: Text('$KanbanItem',maxLines: 2,
+        Expanded(child: Text(title,maxLines: 2,
         overflow:TextOverflow.ellipsis
         ,style: TextStyle(fontSize: 20,fontWeight: .w600))),
         //X버튼

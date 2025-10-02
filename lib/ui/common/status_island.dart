@@ -52,7 +52,7 @@ class StatusIsland extends StatelessWidget {
               context.read<KanbanProvider>().addItem(status, 'New Task')
               },
             visible: status !=KanbanStatus.done,
-            child: Icon(LucideIcons.plus ,size: 24),
+            child: Icon(LucideIcons.plus ,size: 24), 
           ),
         ],
       ),

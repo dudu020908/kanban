@@ -5,7 +5,6 @@ import 'package:kanban/ui/kanban/kanban_list.dart';
 import 'package:provider/provider.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
-//커밋용
 class KanbanBoard extends StatelessWidget {
   const KanbanBoard({super.key});
 
@@ -18,15 +17,14 @@ class KanbanBoard extends StatelessWidget {
           value: status,
           expandContent: true,
           contentConstraints: BoxConstraints.expand(height: 0),
-          tabs: KanbanStatus.values
-              .map(
-                (e) => ShadTab(
-                  value: e,
-                  content: KanbanList(status: e),
-                  child: Text(e.label),
-                ),
-              )
-              .toList(),
+          tabs: KanbanStatus.values.map((e) {
+            return ShadTab(
+              onPressed: () => provider.setKanbanStatus(e),
+              value: e,
+              content: KanbanList(status: e),
+              child: Text(e.label),
+            );
+          }).toList(),
         );
       },
     );
